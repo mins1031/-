@@ -2,3 +2,23 @@ spring:
   profiles:
     active: local
 
+---
+spring:
+  profiles: local
+  datasource:
+    data: localhost:8080
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
+
+---
+spring:
+  profiles: dev
+
+---
+spring:
+  profiles: real
