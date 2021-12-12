@@ -14,6 +14,15 @@ configurations {
     }
 }
 
+bootJar {
+    mainClassName = 'com.example.nonstoppractice.NonstoppracticeApplication'
+}
+
+bootRun {
+    String activeProfile = System.properties['application.yml']
+    systemProperty "application.yml", activeProfile
+}
+
 repositories {
     mavenCentral()
 }
