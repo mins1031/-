@@ -19,8 +19,8 @@ bootJar {
 }
 
 bootRun {
-    String activeProfile = System.properties['application.yml']
-    systemProperty "application.yml", activeProfile
+    String activeProfile = System.properties['spring.profiles.active']
+    systemProperty "spring.profiles.active", activeProfile
 }
 
 repositories {
