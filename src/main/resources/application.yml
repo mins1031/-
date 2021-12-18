@@ -6,7 +6,10 @@ spring:
 spring:
   profiles: local
   datasource:
-    data: classpath:data-h2.sql
+    url: jdbc:mysql://localhost:3306/nonstopdeploy?autoReconnect=true&serverTimezone=UTC
+    username: root
+    password: alsdud6038
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
     hibernate:
