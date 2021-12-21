@@ -25,10 +25,10 @@ public class NonstoppracticeApplication {
             + "/home/ubuntu/app/config/real-application.yml";
 
     public static void main(String[] args) {
-//        new SpringApplicationBuilder(NonstoppracticeApplication.class)
-//                .properties(APPLICATION_LOCATIONS)
-//                .run(args);
-        SpringApplication.run(NonstoppracticeApplication.class);
+        new SpringApplicationBuilder(NonstoppracticeApplication.class)
+                .properties(APPLICATION_LOCATIONS)
+                .run(args);
+//        SpringApplication.run(NonstoppracticeApplication.class);
     }
 
 //    public String assortYmlFilePath() {
