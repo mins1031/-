@@ -16,19 +16,20 @@ public class NonstoppracticeApplication {
 
 //    @Autowired
 //    private Environment environment;
-
+//
 //    private static String localYmlPath = "/Users/macbookair";
 //    private static String liveYmlPath = "/home/ubuntu";
 
-//    public static final String APPLICATION_LOCATIONS = "spring.config.location="
-//            + "classpath:application.yml,"
-//            + "/Users/macbookair/app/config/real-application.yml";
+    public static final String APPLICATION_LOCATIONS = "spring.config.location="
+            + "classpath:application.yml,"
+            + "/home/ubuntu/app/config/real-application.yml";
 
     public static void main(String[] args) {
-//        new SpringApplicationBuilder(NonstoppracticeApplication.class)
-//                .properties(APPLICATION_LOCATIONS)
-//                .run(args);
-        SpringApplication.run(NonstoppracticeApplication.class);
+        System.out.println();
+        new SpringApplicationBuilder(NonstoppracticeApplication.class)
+                .properties(APPLICATION_LOCATIONS)
+                .run(args);
+//        SpringApplication.run(NonstoppracticeApplication.class);
     }
 
 //    public String assortYmlFilePath() {
