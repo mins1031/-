@@ -15,14 +15,15 @@ import java.util.Arrays;
 public class NonstoppracticeApplication {
 
 //    @Autowired
-//    private Environment environment;
+//    private static Environment environment;
 //
 //    private static String localYmlPath = "/Users/macbookair";
 //    private static String liveYmlPath = "/home/ubuntu";
 
     public static final String APPLICATION_LOCATIONS = "spring.config.location="
             + "classpath:application.yml,"
-            + "app/config/real-application.yml";
+//            + assortYmlFilePath()
+            + "/home/ubuntu/app/config/real-application.yml";
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(NonstoppracticeApplication.class)
@@ -31,14 +32,12 @@ public class NonstoppracticeApplication {
 //        SpringApplication.run(NonstoppracticeApplication.class);
     }
 
-//    public String assortYmlFilePath() {
-//        StringBuffer frontPath = new StringBuffer("spring.config.location=classpath:application.yml,");
-//        String backPath = "/app/config/real-application.yml";
+//    public static String assortYmlFilePath() {
 //        if (Arrays.stream(environment.getActiveProfiles()).findFirst().orElse("").equals("local")) {
-//            return String.valueOf(frontPath.append(localYmlPath).append(backPath));
+//            return localYmlPath;
 //        }
 //
-//        return String.valueOf(frontPath.append(liveYmlPath).append(backPath));
+//        return liveYmlPath;
 //    }
 
 }

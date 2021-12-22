@@ -1,16 +1,14 @@
 spring:
-  config:
-    activate:
-      on-profile: local
+  profiles:
+    active: local
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 ---
 spring:
-  config:
-    activate:
-      on-profile: local
+  profiles:
+    active: local
   datasource:
     url: jdbc:mysql://localhost:3306/nonstopdeploy?autoReconnect=true&serverTimezone=UTC
     username: root
@@ -24,14 +22,11 @@ spring:
   h2:
     console:
       enabled: true
-
 ---
 spring:
-  config:
-    activate:
-      on-profile: dev
+  profiles:
+    active: dev
 ---
 spring:
-  config:
-    activate:
-      on-profile: live
+  profiles:
+    active: live
