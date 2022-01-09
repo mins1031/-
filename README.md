@@ -27,4 +27,51 @@
 
 - nginx 포트포워딩에 조금 삽질했다. 분명 con.f파일에 기본으로 8080포트를 바라보라고 하는 설정을 적어놨는데 계속 8080포트가 아닌 nginx메인 페이지(80)로 리다이렉트 되서.... 혹시나 해서 http{}내의 다른 설정들을 지워봤는데 성공했다.
 - `include /etc/nginx/sites-enabled/*;` 해당 구문이 문제였다...
+- 젠킨스로 빌드후 조치로 밑의 쉘 스크립트를 통해 놀고 있는 스프링부트 어플리케이션에 배포후 nginx가 배포된 스프링부트를 바라보게한다.
+```
+#!/bin/bash
+echo "> 현재 구동중인 Port 확인"
+CURRENT_PROFILE=$(curl -s http://localhost/profile)
 
+# 쉬고 있는 set 찾기: set1이 사용중이면 set2가 쉬고 있고, 반대면 set1이 쉬고 있>음
+if [ $CURRENT_PROFILE == set1 ]
+then
+  IDLE_PORT=8082
+elif [ $CURRENT_PROFILE == set2 ]
+then
+  IDLE_PORT=8081
+else
+  echo "> 일치하는 Profile이 없습니다. Profile: $CURRENT_PROFILE"
+  echo "> 8081을 할당합니다."
+  IDLE_PORT=8081
+fi
+
+echo "> 전환할 Port: $IDLE_PORT"
+echo "> Port 전환"
+echo "set \$service_url http://127.0.0.1:${IDLE_PORT};" |sudo tee /etc/nginx/conf.d/service-url.inc
+
+PROXY_PORT=$(curl -s http://localhost/profile)
+"switch.sh" 26L, 761C                                         1,1           Top
+#!/bin/bash
+echo "> 현재 구동중인 Port 확인"
+CURRENT_PROFILE=$(curl -s http://localhost/profile)
+
+# 쉬고 있는 set 찾기: set1이 사용중이면 set2가 쉬고 있고, 반대면 set1이 쉬고 있>음
+if [ $CURRENT_PROFILE == set1 ]
+then
+  IDLE_PORT=8082
+elif [ $CURRENT_PROFILE == set2 ]
+then
+  IDLE_PORT=8081
+else
+  echo "> 일치하는 Profile이 없습니다. Profile: $CURRENT_PROFILE"
+  echo "> 8081을 할당합니다."
+  IDLE_PORT=8081
+fi
+
+echo "> 전환할 Port: $IDLE_PORT"
+echo "> Port 전환"
+echo "set \$service_url http://127.0.0.1:${IDLE_PORT};" |sudo tee /etc/nginx/conf.d/service-url.inc
+
+PROXY_PORT=$(curl -s http://localhost/profile)
+```
